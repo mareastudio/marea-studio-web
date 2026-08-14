@@ -1,17 +1,35 @@
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-nav');
+const menuLabel = menuButton?.querySelector('.sr-only');
+
+const closeMenu = () => {
+  menuButton?.setAttribute('aria-expanded', 'false');
+  navigation?.classList.remove('is-open');
+  if (menuLabel) menuLabel.textContent = 'Abrir menú';
+};
 
 menuButton?.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   navigation.classList.toggle('is-open', !isOpen);
+  if (menuLabel) menuLabel.textContent = isOpen ? 'Abrir menú' : 'Cerrar menú';
 });
 
 navigation?.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    menuButton.setAttribute('aria-expanded', 'false');
-    navigation.classList.remove('is-open');
+    closeMenu();
   });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
+    closeMenu();
+    menuButton.focus();
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 760) closeMenu();
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();

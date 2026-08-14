@@ -43,11 +43,17 @@
             </div>
           </div>
           <div class="hero-art" aria-hidden="true">
-            <div class="sun"></div><div class="horizon"></div>
-            <p>Diseño con intención<br />Desarrollo a medida</p>
+            <div class="hero-art-frame">
+              <span class="art-index">01—04</span>
+              <div class="art-ribbon art-ribbon-top"></div>
+              <div class="art-ribbon art-ribbon-middle"></div>
+              <div class="art-ribbon art-ribbon-bottom"></div>
+              <span class="art-axis"></span>
+              <p>Diseño con intención<br />Desarrollo a medida</p>
+            </div>
           </div>
         </div>
-        <div class="container hero-foot"><span>Buenos Aires · Argentina</span><span>Trabajamos con marcas de todas partes</span></div>
+        <div class="container hero-foot"><span>Estudio independiente de diseño web</span><span>Trabajamos con marcas, estén donde estén</span></div>
       </section>
 
       <section class="section services" id="servicios">
@@ -57,19 +63,19 @@
             <p>Cada sitio nace de una necesidad distinta. Encontramos la solución indicada para que tu presencia digital sea auténtica y efectiva.</p>
           </div>
           <div class="service-list">
-            <article class="service-card"><span class="service-number">01</span><div><h3>Landing Pages</h3><p>Una página enfocada, convincente y diseñada para presentar tu propuesta o impulsar una campaña.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
-            <article class="service-card"><span class="service-number">02</span><div><h3>Sitios Web Modernos</h3><p>Una presencia digital completa, clara y flexible que crece junto con tu marca.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
-            <article class="service-card"><span class="service-number">03</span><div><h3>E-commerce</h3><p>Tiendas y proyectos especiales pensados para ofrecer una experiencia de compra simple y memorable.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card" tabindex="0"><span class="service-number">01</span><div><h3>Landing Pages</h3><p>Una página enfocada, convincente y diseñada para presentar tu propuesta o impulsar una campaña.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card" tabindex="0"><span class="service-number">02</span><div><h3>Sitios Web Modernos</h3><p>Una presencia digital completa, clara y flexible que crece junto con tu marca.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card" tabindex="0"><span class="service-number">03</span><div><h3>E-commerce</h3><p>Tiendas y proyectos especiales pensados para ofrecer una experiencia de compra simple y memorable.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
           </div>
         </div>
       </section>
 
       <section class="section portfolio" id="proyectos">
         <div class="container">
-          <div class="section-heading portfolio-heading"><div><p class="eyebrow light">02 · Portfolio</p><h2>Proyectos seleccionados</h2></div><p>Muy pronto vas a encontrar acá nuestros últimos trabajos y exploraciones.</p></div>
-          <div class="project-grid" aria-label="Próximos proyectos">
-            <article class="project project-large"><div class="project-visual"><span>Próximamente</span><strong>M</strong></div><div class="project-meta"><h3>Nuevos casos en camino</h3><p>Identidad digital · Desarrollo web</p></div></article>
-            <article class="project"><div class="project-visual project-visual-alt"><span>Espacio para crear</span><i></i></div><div class="project-meta"><h3>Tu proyecto puede estar acá</h3><p>Diseño a medida · Mobile-first</p></div></article>
+          <div class="section-heading portfolio-heading"><div><p class="eyebrow light">02 · Portfolio</p><h2>Proyectos seleccionados</h2></div><p>Estamos preparando nuestros primeros casos para compartirlos con el cuidado que merecen.</p></div>
+          <div class="project-grid" aria-label="Adelanto de próximos casos">
+            <article class="project project-large"><div class="project-visual"><span>Archivo en preparación</span><strong>M</strong><i></i></div><div class="project-meta"><h3>Primeros casos, muy pronto</h3><p>Una selección curada de nuestro trabajo</p></div></article>
+            <article class="project"><div class="project-visual project-visual-alt"><span>En edición</span><i></i><b>01 / 02</b></div><div class="project-meta"><h3>Historias detrás del proceso</h3><p>Diseño, decisiones y desarrollo</p></div></article>
           </div>
         </div>
       </section>
@@ -103,10 +109,10 @@
         <div class="container contact-grid">
           <div class="contact-copy"><p class="eyebrow light">05 · Contanos tu idea</p><h2>¿Creamos algo<br /><em>juntos?</em></h2><p>Completá el formulario y contanos brevemente qué tenés en mente. Te respondemos para dar el primer paso.</p><a href="mailto:marea.studioweb@gmail.com">marea.studioweb@gmail.com</a></div>
           <form class="contact-form" id="contact-form">
-            <div class="form-row"><label>Nombre<input name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" /></label><label>Negocio / marca<input name="marca" type="text" autocomplete="organization" placeholder="Nombre de tu marca" /></label></div>
-            <div class="form-row"><label>Email<input name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /></label><label>Instagram o web actual<input name="web" type="text" inputmode="url" placeholder="@usuario o sitio web" /></label></div>
-            <label>¿Qué necesitás?<select name="necesidad" required><option value="" disabled selected>Elegí una opción</option><option>Landing Page</option><option>Sitio Web Moderno</option><option>E-commerce</option><option>Proyecto especial</option></select></label>
-            <label>Contanos tu idea<textarea name="idea" rows="4" required placeholder="¿De qué se trata tu proyecto?"></textarea></label>
+            <div class="form-row"><div class="form-field"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" /></div><div class="form-field"><label for="marca">Negocio / marca</label><input id="marca" name="marca" type="text" autocomplete="organization" placeholder="Nombre de tu marca" /></div></div>
+            <div class="form-row"><div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /></div><div class="form-field"><label for="web">Instagram o web actual</label><input id="web" name="web" type="text" inputmode="url" placeholder="@usuario o sitio web" /></div></div>
+            <label for="necesidad">¿Qué necesitás?</label><select id="necesidad" name="necesidad" required><option value="" disabled selected>Elegí una opción</option><option>Landing Page</option><option>Sitio Web Moderno</option><option>E-commerce</option><option>Proyecto especial</option></select>
+            <label for="idea">Contanos tu idea</label><textarea id="idea" name="idea" rows="4" required placeholder="¿De qué se trata tu proyecto?"></textarea>
             <button class="button button-yellow" type="submit">Enviar consulta <span aria-hidden="true">↗</span></button>
             <p class="form-note" id="form-note">Al enviar, se abrirá tu aplicación de correo.</p>
           </form>
