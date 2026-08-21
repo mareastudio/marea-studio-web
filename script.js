@@ -1,6 +1,7 @@
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-nav');
 const menuLabel = menuButton?.querySelector('.sr-only');
+const siteHeader = document.querySelector('.site-header');
 
 const closeMenu = () => {
   menuButton?.setAttribute('aria-expanded', 'false');
@@ -31,6 +32,10 @@ document.addEventListener('keydown', (event) => {
 window.addEventListener('resize', () => {
   if (window.innerWidth >= 760) closeMenu();
 });
+
+const updateHeader = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 16);
+updateHeader();
+window.addEventListener('scroll', updateHeader, { passive: true });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
