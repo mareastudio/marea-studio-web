@@ -66,8 +66,9 @@ h1 em, h2 em { color: var(--yellow); font-weight: 400; }
 
 .portfolio { background: var(--blue); color: var(--paper); }
 .portfolio-heading > p { max-width: 390px; color: rgba(247, 245, 240, 0.7); }
-.project-grid { display: grid; gap: 40px; margin-top: 50px; }
+.project-grid { display: grid; gap: 88px; margin-top: 50px; }
 .project-card { min-width: 0; }
+.project-index { margin-bottom: 12px; color: rgba(247, 245, 240, 0.5); font-size: 10px; letter-spacing: 0.16em; text-align: right; }
 .project-preview { height: clamp(360px, 58vw, 650px); overflow: hidden; border: 1px solid rgba(247, 245, 240, 0.24); background: var(--yellow); box-shadow: 0 28px 70px rgba(13, 27, 42, 0.3); }
 .browser-bar { height: 42px; padding: 0 16px; display: flex; align-items: center; gap: 7px; background: var(--navy); color: rgba(247, 245, 240, 0.54); }
 .browser-bar > span { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); opacity: 0.72; }
@@ -168,6 +169,12 @@ h1 em, h2 em { color: var(--yellow); font-weight: 400; }
   .service-card h3 { font-size: 38px; }
   .project-content { padding-top: 30px; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 50px; }
   .project-link { width: 210px; }
+  .project-grid { gap: 150px; margin-top: 74px; }
+  .project-card--featured { width: 92%; }
+  .project-card--offset { width: 76%; margin-left: auto; }
+  .project-card--offset .project-preview { height: clamp(380px, 45vw, 540px); }
+  .project-card--offset .project-content { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .project-card--offset .project-link { justify-self: end; }
   .why-grid { grid-template-columns: 1fr 1fr; gap: 11vw; align-items: start; }
   .why-intro { position: sticky; top: 40px; }
   .process-grid { grid-template-columns: repeat(4, 1fr); }
@@ -191,6 +198,8 @@ h1 em, h2 em { color: var(--yellow); font-weight: 400; }
   .service-card { grid-template-columns: 90px 1fr auto; }
   .service-card > div { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
   .service-card h3 { margin: 0; }
+  .project-card--featured { width: 88%; }
+  .project-card--offset { width: 72%; }
   .process-grid h3 { font-size: 32px; }
 }
 
@@ -206,6 +215,7 @@ h1 em, h2 em { color: var(--yellow); font-weight: 400; }
   .section { padding: 76px 0; }
   .service-card { grid-template-columns: 26px minmax(0, 1fr) auto; }
   .project-preview { height: 390px; }
+  .project-card--offset .project-preview { height: 330px; }
   .project-copy h3 { font-size: clamp(42px, 14vw, 58px); }
   .process-grid p { font-size: 11px; }
 }
