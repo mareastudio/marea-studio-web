@@ -7,12 +7,14 @@ const closeMenu = () => {
   menuButton?.setAttribute('aria-expanded', 'false');
   navigation?.classList.remove('is-open');
   if (menuLabel) menuLabel.textContent = 'Abrir menú';
+  document.body.classList.remove('menu-open');
 };
 
 menuButton?.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   navigation.classList.toggle('is-open', !isOpen);
+  document.body.classList.toggle('menu-open', !isOpen);
   if (menuLabel) menuLabel.textContent = isOpen ? 'Abrir menú' : 'Cerrar menú';
 });
 
@@ -31,6 +33,11 @@ document.addEventListener('keydown', (event) => {
 
 window.addEventListener('resize', () => {
   if (window.innerWidth >= 760) closeMenu();
+});
+
+document.addEventListener('click', (event) => {
+  if (menuButton?.getAttribute('aria-expanded') !== 'true') return;
+  if (!navigation?.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
 });
 
 const updateHeader = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 16);
