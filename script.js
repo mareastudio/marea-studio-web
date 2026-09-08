@@ -32,7 +32,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth >= 760) closeMenu();
+  if (window.innerWidth >= 900) closeMenu();
 });
 
 document.addEventListener('click', (event) => {
@@ -43,6 +43,26 @@ document.addEventListener('click', (event) => {
 const updateHeader = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 16);
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
+
+const sectionLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+const observedSections = sectionLinks
+  .map((link) => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+if ('IntersectionObserver' in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      sectionLinks.forEach((link) => {
+        const isCurrent = link.getAttribute('href') === `#${entry.target.id}`;
+        if (isCurrent) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-25% 0px -65%', threshold: 0 });
+
+  observedSections.forEach((section) => sectionObserver.observe(section));
+}
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
