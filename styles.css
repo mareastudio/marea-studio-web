@@ -81,9 +81,20 @@ h1 em, h2 em { color: var(--yellow); font-weight: 400; }
 .project-preview iframe { width: 100%; height: calc(162% - 68px); display: block; border: 0; background: var(--paper); pointer-events: none; transform: translate3d(0, 0, 0); will-change: auto; }
 .project-preview.is-previewing iframe { animation: preview-scroll 12s cubic-bezier(0.45, 0, 0.55, 1) 0.8s infinite alternate; will-change: transform; }
 
+/* Norte has a longer page, so its preview gets its own viewport and route. */
+.project-preview--norte iframe { height: 250%; }
+.project-preview--norte.is-previewing iframe { animation: norte-preview-scroll 15s ease-in-out 0.8s infinite alternate; }
+
 @keyframes preview-scroll {
   0%, 16% { transform: translate3d(0, 0, 0); }
   84%, 100% { transform: translate3d(0, -38.27%, 0); }
+}
+
+@keyframes norte-preview-scroll {
+  0%, 14% { transform: translate3d(0, 0, 0); }
+  34%, 43% { transform: translate3d(0, -22%, 0); }
+  65%, 74% { transform: translate3d(0, -42%, 0); }
+  94%, 100% { transform: translate3d(0, -60%, 0); }
 }
 .project-content { padding-top: 24px; display: grid; gap: 26px; border-top: 1px solid rgba(247, 245, 240, 0.25); }
 .project-category { margin-bottom: 15px; color: var(--yellow); font-size: 10px; font-weight: 650; letter-spacing: 0.16em; text-transform: uppercase; }
