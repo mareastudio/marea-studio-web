@@ -64,6 +64,28 @@ if ('IntersectionObserver' in window) {
   observedSections.forEach((section) => sectionObserver.observe(section));
 }
 
+const projectPreviews = document.querySelectorAll('[data-preview-scroll]');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let previewObserver;
+
+const updateProjectPreviews = () => {
+  previewObserver?.disconnect();
+  projectPreviews.forEach((preview) => preview.classList.remove('is-previewing'));
+
+  if (reducedMotion.matches || !projectPreviews.length || !('IntersectionObserver' in window)) return;
+
+  previewObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle('is-previewing', entry.isIntersecting);
+    });
+  }, { rootMargin: '10% 0px', threshold: 0.2 });
+
+  projectPreviews.forEach((preview) => previewObserver.observe(preview));
+};
+
+updateProjectPreviews();
+reducedMotion.addEventListener?.('change', updateProjectPreviews);
+
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
