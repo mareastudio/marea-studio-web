@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Marea Studio crea landing pages, sitios web modernos y e-commerce para marcas y negocios." />
+    <meta name="description" content="Marea Studio diseña y desarrolla one pages premium, sitios web modernos y e-commerce, con mantenimiento para marcas y negocios." />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#0D1B2A" />
     <meta property="og:title" content="Marea Studio — Diseño y desarrollo web" />
     <meta property="og:description" content="Diseño y desarrollo web para marcas y negocios." />
@@ -27,7 +29,7 @@
           <span class="sr-only">Abrir menú</span><span></span><span></span>
         </button>
         <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
-          <a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#proceso">Proceso</a>
+          <a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#estudio">Estudio</a><a href="#proceso">Proceso</a>
           <a class="nav-cta" href="#contacto">Contanos tu idea</a>
         </nav>
       </div>
@@ -66,9 +68,10 @@
             <p>Cada sitio nace de una necesidad distinta. Encontramos la solución indicada para que tu presencia digital sea auténtica y efectiva.</p>
           </div>
           <div class="service-list">
-            <article class="service-card" tabindex="0"><span class="service-number">01</span><div><h3>Landing Pages</h3><p>Una página enfocada, convincente y diseñada para presentar tu propuesta o impulsar una campaña.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
-            <article class="service-card" tabindex="0"><span class="service-number">02</span><div><h3>Sitios Web Modernos</h3><p>Una presencia digital completa, clara y flexible que crece junto con tu marca.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
-            <article class="service-card" tabindex="0"><span class="service-number">03</span><div><h3>E-commerce</h3><p>Tiendas y proyectos especiales pensados para ofrecer una experiencia de compra simple y memorable.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card"><span class="service-number">01</span><div><h3>One Page Premium</h3><p>Una página enfocada, convincente y diseñada para presentar tu propuesta o impulsar una campaña.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card"><span class="service-number">02</span><div><h3>Sitio Web Moderno</h3><p>Una presencia digital completa, clara y flexible que crece junto con tu marca.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card"><span class="service-number">03</span><div><h3>E-commerce</h3><p>Una tienda online pensada para ofrecer una experiencia de compra simple, confiable y memorable.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
+            <article class="service-card"><span class="service-number">04</span><div><h3>Mantenimiento</h3><p>Soporte continuo, mejoras y actualizaciones para que tu sitio se mantenga seguro, vigente y funcionando.</p></div><span class="service-mark" aria-hidden="true">↗</span></article>
           </div>
         </div>
       </section>
@@ -142,11 +145,11 @@
       <section class="section contact" id="contacto">
         <div class="container contact-grid">
           <div class="contact-copy"><p class="eyebrow light">05 · Contanos tu idea</p><h2>¿Creamos algo<br /><em>juntos?</em></h2><p>Completá el formulario y contanos brevemente qué tenés en mente. Te respondemos para dar el primer paso.</p><a href="mailto:marea.studioweb@gmail.com">marea.studioweb@gmail.com</a></div>
-          <form class="contact-form" id="contact-form">
+          <form class="contact-form" id="contact-form" aria-describedby="form-note">
             <div class="form-row"><div class="form-field"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" /></div><div class="form-field"><label for="marca">Negocio / marca</label><input id="marca" name="marca" type="text" autocomplete="organization" placeholder="Nombre de tu marca" /></div></div>
             <div class="form-row"><div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="tu@email.com" /></div><div class="form-field"><label for="web">Instagram o web actual</label><input id="web" name="web" type="text" inputmode="url" placeholder="@usuario o sitio web" /></div></div>
-            <label for="necesidad">¿Qué necesitás?</label><select id="necesidad" name="necesidad" required><option value="" disabled selected>Elegí una opción</option><option>Landing Page</option><option>Sitio Web Moderno</option><option>E-commerce</option><option>Proyecto especial</option></select>
-            <label for="idea">Contanos tu idea</label><textarea id="idea" name="idea" rows="4" required placeholder="¿De qué se trata tu proyecto?"></textarea>
+            <div class="form-field"><label for="necesidad">¿Qué necesitás?</label><select id="necesidad" name="necesidad" required><option value="" disabled selected>Elegí una opción</option><option>One Page Premium</option><option>Sitio Web Moderno</option><option>E-commerce</option><option>Mantenimiento</option><option>Proyecto especial</option></select></div>
+            <div class="form-field"><label for="idea">Contanos tu idea</label><textarea id="idea" name="idea" rows="4" required placeholder="¿De qué se trata tu proyecto?"></textarea></div>
             <button class="button button-yellow" type="submit">Enviar consulta <span aria-hidden="true">↗</span></button>
             <p class="form-note" id="form-note">Al enviar, se abrirá tu aplicación de correo.</p>
           </form>
@@ -162,7 +165,7 @@
           <p>Diseño y desarrollo web para marcas y negocios.</p>
         </div>
         <div class="footer-links" aria-label="Enlaces del pie de página">
-          <div><span>Explorá</span><a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#proceso">Proceso</a></div>
+          <div><span>Explorá</span><a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#estudio">Estudio</a><a href="#proceso">Proceso</a></div>
           <div><span>Conectemos</span><a href="mailto:marea.studioweb@gmail.com">Email ↗</a><a href="https://www.instagram.com/marea.studioweb/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
         </div>
       </div>
