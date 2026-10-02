@@ -19,9 +19,7 @@ menuButton?.addEventListener('click', () => {
 });
 
 navigation?.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    closeMenu();
-  });
+  link.addEventListener('click', () => closeMenu());
 });
 
 document.addEventListener('keydown', (event) => {
@@ -91,15 +89,15 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  const subject = `Consulta web — ${data.get('marca') || data.get('nombre')}`;
+  const subject = `Consulta Paid Media — ${data.get('marca') || data.get('nombre')}`;
   const body = [
     `Nombre: ${data.get('nombre')}`,
     `Negocio / marca: ${data.get('marca') || 'No indicado'}`,
     `Email: ${data.get('email')}`,
     `Instagram o web: ${data.get('web') || 'No indicado'}`,
-    `Qué necesita: ${data.get('necesidad')}`,
+    `Objetivo: ${data.get('necesidad')}`,
     '',
-    'Idea:',
+    'Contexto:',
     data.get('idea'),
   ].join('\n');
 
