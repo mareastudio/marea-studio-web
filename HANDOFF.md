@@ -67,3 +67,10 @@
 - Se migraron la maqueta visual V1 (`index.html`, `styles.css`, `script.js`) y toda la documentación de decisiones desde la rama del repo equivocado a una nueva rama `marea-visual-v1` del repositorio canónico.
 - El logo y favicon del repositorio canónico coinciden exactamente con los de la maqueta.
 - Vercel detectó automáticamente `mareastudio/marea-studio-web` / `marea-visual-v1` y creó preview READY. No se modificó `main` ni la publicación productiva. La revisión visual real del usuario sigue pendiente.
+
+## Paso 10 — versión visual V2 APROBADA (14-10-2026)
+
+- El usuario revisó y aprobó expresamente la V2 de espaciado: «Sí. Quedó como quería».
+- **Repositorio:** `mareastudio/marea-studio-web`. **Rama canónica de revisión actual:** `marea-spacing-v2` (proveniente de `marea-visual-v1`).
+- Mantener los márgenes laterales, recortar aire vertical global y reservar más espacio para secciones de valor y transparencia. El copy, logo y tipografía no se modificaron en V2.
+- **Pendientes antes de publicar:** decidir y comprobar mecanismo real de recepción de formulario (actualmente `mailto:`), QA visual/funcional mobile y desktop, validaciones de accesibilidad y performance. No tocar `main` ni el dominio publicado hasta autorización específica.
