@@ -51,32 +51,72 @@ if (yearElement) yearElement.textContent = String(new Date().getFullYear());
 
 const form = document.querySelector("#contact-form");
 const formNote = document.querySelector("#form-note");
+const submitButton = form?.querySelector('button[type="submit"]');
+const submitButtonHTML = submitButton?.innerHTML || "";
+const formspreeEndpoint = form?.dataset.formspreeEndpoint?.trim() || "";
+const endpointIsValid = /^https:\/\/formspree\.io\/f\/[a-z0-9]{6,32}$/i.test(formspreeEndpoint);
 
-// Provisional, honest fallback: a mailto link DOES NOT send a message automatically.
-// A real backend/inbox endpoint must be chosen and tested before production release.
-form?.addEventListener("submit", event => {
-  event.preventDefault();
-  if (!form.reportValidity()) return;
+function setFormFeedback(message, state) {
+  if (!formNote) return;
+  formNote.textContent = message;
+  formNote.dataset.state = state;
+}
 
-  const data = new FormData(form);
-  const value = key => String(data.get(key) ?? "").trim();
-  const subject = "Consulta Marea Studio — " + (value("negocio") || value("nombre"));
-  const body = [
-    "Nombre: " + value("nombre"),
-    "Negocio: " + value("negocio"),
-    "Email: " + value("email"),
-    "Instagram o sitio web: " + (value("instagram") || "No indicado"),
-    "Objetivo: " + value("objetivo"),
-    "",
-    "Contanos un poco más:",
-    value("contexto")
-  ].join("\n");
-
-  const mailto = "mailto:marea.studioweb@gmail.com?subject=" +
-    encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-
-  if (formNote) {
-    formNote.textContent = "Abrimos tu aplicación de correo con la consulta preparada. Revisá el mensaje y presioná Enviar para completar el contacto.";
+// The Formspree endpoint is activated only after the owner creates and verifies a form.
+// Never claim successful submission until the service returns a successful response.
+if (form && submitButton) {
+  submitButton.disabled = !endpointIsValid;
+  if (endpointIsValid) {
+    setFormFeedback(
+      "Tus datos se enviarán desde esta página, sin abrir tu aplicación de correo.",
+      "ready"
+    );
+  } else {
+    setFormFeedback(
+      "Estamos terminando de habilitar el envío directo. Mientras tanto, podés escribirnos a marea.studioweb@gmail.com.",
+      "unavailable"
+    );
   }
-  window.location.href = mailto;
+}
+
+form?.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!endpointIsValid || !submitButton || !form.reportValidity() || submitButton.disabled) return;
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Enviando consulta…";
+  setFormFeedback("Estamos enviando tu consulta. Esperá un momento.", "sending");
+
+  // Formspree supports standard FormData payloads with Accept: application/json.
+  // Its built-in spam checks should be configured in the form owner's dashboard.
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+
+  try {
+    const response = await fetch(formspreeEndpoint, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(form),
+      signal: controller.signal
+    });
+
+    if (!response.ok) {
+      throw new Error("Formspree rejected the submission (HTTP " + response.status + ")");
+    }
+
+    form.reset();
+    setFormFeedback(
+      "¡Listo! Tu consulta fue recibida. Nos pondremos en contacto por el email que nos dejaste.",
+      "success"
+    );
+  } catch (error) {
+    setFormFeedback(
+      "No pudimos enviar la consulta. Por favor, intentá nuevamente o escribinos a marea.studioweb@gmail.com.",
+      "error"
+    );
+  } finally {
+    clearTimeout(timeout);
+    submitButton.innerHTML = submitButtonHTML;
+    submitButton.disabled = false;
+  }
 });
