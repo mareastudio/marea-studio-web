@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0D1B2A">
+  <title>Marea Studio — Sistema visual aprobado | Paso 09</title>
+  <meta name="description" content="Tablero independiente de sistema de diseño: colores, tipografía y componentes. Pendiente de aprobación.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fraunces:opsz,wght@9..144,400..600&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* FUENTE: styles.css y assets/brand/marea-logo-primary-dark.svg existentes */
+    --navy:#0D1B2A; --blue:#1E3A5F; --slate:#415A77;
+    --yellow:#FFE39A; --paper:#F7F5F0; --ink:#1A1F26;
+    --serif:'DM Serif Display',Georgia,serif; --sans:'Instrument Sans',Arial,sans-serif;
+    --hairline:rgba(26,31,38,.18);
+    /* PROPUESTAS para aprobar; NO son tokens implementados en la web */
+    --radius-sm:2px; --radius-md:4px; --shadow-subtle:0 8px 24px rgba(13,27,42,.08);
+    --gutter:16px; --content-max:1180px; --button-min-height:52px;
+    --font-preview:'DM Serif Display',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--ink);background:var(--paper)}
+  a{color:inherit}
+  button{font:inherit;cursor:pointer}
+  button:focus-visible,a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+  .wrap{width:min(calc(100% - 2*var(--gutter)),var(--content-max));margin:auto}
+  .top{background:var(--navy);color:var(--paper);border-bottom:1px solid rgba(247,245,240,.18)}
+  .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
+  .brand-svg{display:block;width:148px;height:auto}
+  .status{font-size:10px;font-weight:650;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase;text-align:right}
+  .masthead{background:var(--navy);color:var(--paper);padding:63px 0 79px}
+  .eyebrow{font-size:11px;letter-spacing:.19em;text-transform:uppercase;font-weight:650}
+  .masthead .eyebrow{color:var(--yellow)}
+  h1,h2,h3,p{margin-top:0}
+  h1,h2,h3{font-family:var(--serif);font-weight:400}
+  h1{font-size:clamp(50px,11vw,105px);line-height:.99;letter-spacing:-.038em;max-width:930px;margin:32px 0}
+  h1 span{color:var(--yellow)}
+  .intro{max-width:570px;font-size:17px;line-height:1.55;color:rgba(247,245,240,.8)}
+  .meta{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid rgba(247,245,240,.18);margin-top:65px;padding-top:20px;color:#D0D5D9;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  section{padding:70px 0;border-bottom:1px solid var(--hairline)}
+  .section-head{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:36px}
+  .section-head .eyebrow{color:var(--blue)}
+  h2{font-size:clamp(35px,7vw,66px);line-height:1.02;letter-spacing:-.032em;margin:0}
+  .explain{max-width:650px;color:var(--slate);font-size:15px}
+  .swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .swatch{border:1px solid var(--hairline);min-width:0}
+  .swatch-preview{height:110px;display:flex;align-items:flex-end;padding:12px}
+  .swatch-info{padding:13px 13px 15px;display:grid;gap:4px;background:#fff}
+  .swatch-name{font-size:13px;font-weight:650}
+  .swatch-hex{font-size:12px;letter-spacing:.045em;color:var(--slate);font-variant-numeric:tabular-nums}
+  .type-options{display:grid;grid-template-columns:1fr;gap:14px}
+  .font-option{display:block;width:100%;text-align:left;background:transparent;color:var(--ink);border:1px solid var(--hairline);padding:20px 20px 23px;transition:border-color .2s,background-color .2s}
+  .font-option[aria-pressed="true"]{border-color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy);background:#fff}
+  .font-option:hover{border-color:var(--slate)}
+  .font-caption{display:flex;justify-content:space-between;gap:10px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:650}
+  .font-mark{color:var(--slate)}
+  .font-sample{font-size:clamp(35px,7vw,49px);line-height:1.05;letter-spacing:-.025em;margin:0 0 13px}
+  .font-desc{font-size:12px;color:var(--slate);margin:0}
+  .type-preview{margin-top:24px;background:var(--navy);color:var(--paper);padding:29px 22px}
+  .type-preview h3{font-family:var(--font-preview);font-size:clamp(42px,10vw,72px);line-height:1.0;letter-spacing:-.035em;margin:0 0 16px;max-width:730px}
+  .type-preview h3 em{font-style:normal;color:var(--yellow)}
+  .type-preview p{max-width:570px;font-size:15px;line-height:1.65;color:rgba(247,245,240,.78);margin:0}
+  .button-stage{background:var(--navy);color:var(--paper);padding:38px 23px;margin-bottom:17px}
+  .button-stack{display:flex;flex-wrap:wrap;align-items:center;gap:28px}
+  .demo-primary{min-height:var(--button-min-height);display:inline-flex;align-items:center;justify-content:space-between;gap:45px;min-width:min(100%,290px);padding:13px 19px;border:1px solid transparent;border-radius:var(--radius-sm);background:var(--yellow);color:var(--navy);font-size:14px;font-weight:650}
+  .demo-secondary{border-bottom:1px solid var(--paper);padding:8px 0;color:var(--paper);font-size:13px}
+  .caption{color:var(--slate);font-size:12px;line-height:1.55}
+  .spec-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px}
+  .spec{border-top:1px solid var(--hairline);padding:14px 0;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .spec strong{font-size:13px;font-weight:650}
+  .spec span{font-size:12px;color:var(--slate);text-align:right}
+  .radii{display:flex;gap:17px;flex-wrap:wrap;align-items:flex-end;padding-top:12px}
+  .radius-sample{background:var(--navy);width:78px;height:56px}
+  .radius-set{text-align:center;font-size:11px;color:var(--slate);display:grid;gap:10px}
+  .preview-mobile{margin:26px auto 0;width:100%;max-width:375px;min-height:470px;border:1px solid var(--hairline);background:var(--navy);color:var(--paper);padding:25px 22px}
+  .preview-mobile .micro{font-size:9px;letter-spacing:.17em;color:var(--yellow);text-transform:uppercase;margin-bottom:55px}
+  .preview-mobile h3{font-size:clamp(43px,12vw,57px);line-height:1.01;letter-spacing:-.035em}
+  .preview-mobile h3 span{color:var(--yellow)}
+  .preview-mobile p{font-size:14px;line-height:1.6;color:rgba(247,245,240,.8)}
+  .preview-mobile .demo-primary{width:100%;min-width:0;margin-top:17px;gap:12px}
+  .token-code{background:var(--navy);color:var(--paper);padding:20px;overflow-x:auto;font-size:12px;line-height:1.8;white-space:pre;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  .foot{background:var(--navy);color:var(--paper);padding:45px 0 60px}
+  .foot h2{font-size:clamp(30px,6vw,48px);margin-bottom:16px}
+  .foot p{max-width:720px;color:rgba(247,245,240,.76)}
+  .foot small{display:block;margin-top:26px;color:rgba(247,245,240,.5)}
+  @media (min-width:700px){
+    :root{--gutter:40px}
+    .top-inner{padding:20px 0}
+    .masthead{padding:95px 0 100px}
+    section{padding:92px 0}
+    .section-head{grid-template-columns:1.2fr 1fr;gap:25px}
+    .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .swatch-preview{height:160px}
+    .type-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .font-option{padding:22px}
+    .font-sample{font-size:40px}
+    .button-stage{padding:60px}
+    .spec-grid{grid-template-columns:1fr 1fr;column-gap:50px}
+    .type-preview{padding:55px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="wrap top-inner">
+  <svg class="brand-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="Marea Studio">
+   <rect width="1200" height="430" fill="#0D1B2A"/>
+   <text x="600" y="170" text-anchor="middle" font-family="'DM Serif Display',Georgia,serif" font-size="170" fill="#F7F5F0">Marea</text>
+   <line x1="265" y1="250" x2="355" y2="250" stroke="#FFE39A" stroke-width="6" stroke-linecap="round"/>
+   <text x="600" y="268" text-anchor="middle" font-family="'Instrument Sans',Arial,sans-serif" font-size="42" font-weight="500" letter-spacing="24" fill="#F7F5F0">STUDIO</text>
+   <line x1="845" y1="250" x2="935" y2="250" stroke="#FFE39A" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <span class="status">Sistema visual · 09<br>Opción A aprobada</span>
+ </div>
+</header>
+<main>
+ <div class="masthead">
+  <div class="wrap">
+   <div class="eyebrow">Marea Studio / Sistema visual</div>
+   <h1>Una identidad que <span>no necesita gritar.</span></h1>
+   <p class="intro">Menos recursos decorativos. Más intención en cada decisión. La opción tipográfica A y la dirección minimalista están aprobadas. Las alternativas quedan para referencia; este tablero no modifica la web ni el logo originales.</p>
+   <div class="meta"><span>Mobile-first · 375 px</span><span>HTML + CSS + JS vanilla</span><span>Identidad actual como base</span></div>
+  </div>
+ </div>
+ <section id="color">
+  <div class="wrap">
+   <div class="section-head"><div><div class="eyebrow">01 / Color</div><h2>Los colores ya son nuestros.</h2></div><p class="explain">Paleta extraída de los archivos <code>styles.css</code> y del logotipo SVG de Marea. No son valores estimados desde una captura.</p></div>
+   <div class="swatches">
+    <div class="swatch"><div class="swatch-preview" style="background:#0D1B2A"><span style="color:#F7F5F0;font-size:11px">Base oscura</span></div><div class="swatch-info"><span class="swatch-name">Azul profundo</span><span class="swatch-hex">#0D1B2A · --navy</span></div></div>
+    <div class="swatch"><div class="swatch-preview" style="background:#FFE39A"><span style="color:#0D1B2A;font-size:11px">Acento / CTA</span></div><div class="swatch-info"><span class="swatch-name">Amarillo pastel</span><span class="swatch-hex">#FFE39A · --yellow</span></div></div>
+    <div class="swatch"><div class="swatch-preview" style="background:#F7F5F0"><span style="color:#1A1F26;font-size:11px">Fondo claro</span></div><div class="swatch-info"><span class="swatch-name">Marfil</span><span class="swatch-hex">#F7F5F0 · --paper</span></div></div>
+    <div class="swatch"><div class="swatch-preview" style="background:#1E3A5F"><span style="color:#F7F5F0;font-size:11px">Secundario</span></div><div class="swatch-info"><span class="swatch-name">Azul secundario</span><span class="swatch-hex">#1E3A5F · --blue</span></div></div>
+    <div class="swatch"><div class="swatch-preview" style="background:#415A77"><span style="color:#F7F5F0;font-size:11px">Texto en fondo claro</span></div><div class="swatch-info"><span class="swatch-name">Azul pizarra</span><span class="swatch-hex">#415A77 · --slate</span></div></div>
+    <div class="swatch"><div class="swatch-preview" style="background:#1A1F26"><span style="color:#F7F5F0;font-size:11px">Texto</span></div><div class="swatch-info"><span class="swatch-name">Tinta</span><span class="swatch-hex">#1A1F26 · --ink</span></div></div>
+   </div>
+   <p class="caption" style="margin-top:16px">Accesibilidad: el amarillo sobre el azul profundo tiene contraste aproximado 13,84:1; el marfil sobre el azul profundo, 15,96:1. Evitar usar azul pizarra sobre azul profundo para texto pequeño: solo 2,45:1.</p>
+  </div>
+ </section>
+ <section id="tipo">
+  <div class="wrap">
+   <div class="section-head"><div><div class="eyebrow">02 / Tipografía</div><h2>Tres tonos. Una voz.</h2></div><p class="explain">El logo original se conserva. Probamos solamente la tipografía de los titulares de la web. Elegimos la opción A. Podés seguir probando las otras fuentes como comparación, sin que eso cambie la decisión.</p></div>
+   <div class="type-options" role="group" aria-label="Seleccionar tipografía del título para la vista previa">
+    <button class="font-option" type="button" data-font="'DM Serif Display',Georgia,serif" aria-pressed="true">
+     <span class="font-caption"><span>A · Original</span><span class="font-mark">Aprobada ✓</span></span>
+     <p class="font-sample" style="font-family:'DM Serif Display',Georgia,serif">Probamos ideas.</p>
+     <p class="font-desc">DM Serif Display + Instrument Sans. Editorial, sobria y alineada con el logotipo actual.</p>
+    </button>
+    <button class="font-option" type="button" data-font="'Newsreader',Georgia,serif" aria-pressed="false">
+     <span class="font-caption"><span>B · Refinada</span><span class="font-mark">Alternativa</span></span>
+     <p class="font-sample" style="font-family:'Newsreader',Georgia,serif">Probamos ideas.</p>
+     <p class="font-desc">Newsreader + Instrument Sans. Trazo más literario, delicado y contenido.</p>
+    </button>
+    <button class="font-option" type="button" data-font="'Fraunces',Georgia,serif" aria-pressed="false">
+     <span class="font-caption"><span>C · Expresiva</span><span class="font-mark">Alternativa</span></span>
+     <p class="font-sample" style="font-family:'Fraunces',Georgia,serif">Probamos ideas.</p>
+     <p class="font-desc">Fraunces + Instrument Sans. Más carácter visual, con riesgo de competir con el mensaje.</p>
+    </button>
+   </div>
+   <div class="type-preview" aria-live="polite">
+    <div class="eyebrow" style="color:var(--yellow);margin-bottom:27px">PUBLICIDAD EN INSTAGRAM Y FACEBOOK</div>
+    <h3>Probamos ideas.<br><em>No probamos suerte.</em></h3>
+    <p>Tu negocio necesita clientes, no anuncios por anunciar. Diseñamos y gestionamos campañas en Instagram y Facebook con estrategia, creatividad y resultados medibles.</p>
+   </div>
+  </div>
+ </section>
+ <section id="cta">
+  <div class="wrap">
+   <div class="section-head"><div><div class="eyebrow">03 / Acción</div><h2>El botón, sin distraer.</h2></div><p class="explain">Reproducimos el CTA aprobado del hero y dejamos el enlace secundario claramente subordinado. Estos son elementos visuales de muestra, no envían solicitudes.</p></div>
+   <div class="button-stage"><div class="button-stack"><span class="demo-primary" role="img" aria-label="Ejemplo visual del botón Hablemos de tu negocio">Hablemos de tu negocio <span aria-hidden="true">↗</span></span><span class="demo-secondary">Conocé cómo trabajamos ↓</span></div></div>
+   <div class="spec-grid">
+    <div class="spec"><strong>Altura mínima</strong><span>52 px · actual</span></div>
+    <div class="spec"><strong>Relleno</strong><span>14 px vertical / 20 px horizontal · actual</span></div>
+    <div class="spec"><strong>Color</strong><span>#FFE39A con texto #0D1B2A · actual</span></div>
+    <div class="spec"><strong>Radio</strong><span>2 px · propuesta</span></div>
+    <div class="spec"><strong>Enlace secundario</strong><span>Subrayado fino, sin fondo · propuesta</span></div>
+    <div class="spec"><strong>Foco de teclado</strong><span>Contorno 3 px visible · actual</span></div>
+   </div>
+  </div>
+ </section>
+ <section id="ritmo">
+  <div class="wrap">
+   <div class="section-head"><div><div class="eyebrow">04 / Detalles</div><h2>Menos efectos.<br>Más ritmo.</h2></div><p class="explain">La web actual ya evita grandes radios. Proponemos trabajar con líneas, aire y jerarquía; las sombras solo donde aporten información.</p></div>
+   <div class="radii">
+    <div class="radius-set"><span class="radius-sample" style="border-radius:0"></span><span>0 px · editorial</span></div>
+    <div class="radius-set"><span class="radius-sample" style="border-radius:2px"></span><span>2 px · botón</span></div>
+    <div class="radius-set"><span class="radius-sample" style="border-radius:4px"></span><span>4 px · opcional</span></div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec"><strong>Sombras</strong><span>Sin sombra por defecto · propuesta</span></div>
+    <div class="spec"><strong>Excepción</strong><span>0 8px 24px rgba(13,27,42,.08) · propuesta</span></div>
+    <div class="spec"><strong>Contenedor</strong><span>1180 px máximo · actual</span></div>
+    <div class="spec"><strong>Margen en 375 px</strong><span>16 px a cada lado · actual</span></div>
+    <div class="spec"><strong>Secciones</strong><span>76 px mobile / 124 px desktop · actual</span></div>
+    <div class="spec"><strong>Elementos decorativos</strong><span>Solo si explican algo · criterio aprobado</span></div>
+   </div>
+   <div class="preview-mobile">
+    <div class="micro">Marea Studio / Vista 375 px</div>
+    <h3>Probamos ideas.<br><span>No probamos suerte.</span></h3>
+    <p>Tu negocio necesita clientes, no anuncios por anunciar. Diseñamos y gestionamos campañas en Instagram y Facebook con estrategia, creatividad y resultados medibles.</p>
+    <span class="demo-primary">Hablemos de tu negocio <span aria-hidden="true">↗</span></span>
+   </div>
+   <p class="caption" style="text-align:center;margin-top:12px">Vista conceptual en ancho máximo 375 px. El ajuste definitivo requiere comprobar el navegador real a 375 px y otras anchuras.</p>
+  </div>
+ </section>
+ <section id="variables">
+  <div class="wrap">
+   <div class="section-head"><div><div class="eyebrow">05 / Registro</div><h2>Tokens trazables.</h2></div><p class="explain">Esta muestra parte de variables originales existentes y agrega solo alternativas marcadas como propuestas. No implica su incorporación automática al sitio.</p></div>
+   <pre class="token-code">/* Actuales: comprobados en styles.css */
+--navy: #0D1B2A;       --blue: #1E3A5F;
+--slate: #415A77;      --yellow: #FFE39A;
+--paper: #F7F5F0;      --ink: #1A1F26;
+--serif: 'DM Serif Display', Georgia, serif;
+--sans: 'Instrument Sans', sans-serif;
+
+/* Propuestos: pendientes de aprobación */
+--radius-sm: 2px;       --radius-md: 4px;
+--shadow-subtle: 0 8px 24px rgba(13,27,42,.08);
+--button-min-height: 52px;</pre>
+  </div>
+ </section>
+</main>
+<footer class="foot"><div class="wrap"><div class="eyebrow" style="color:var(--yellow);margin-bottom:20px">Paso 09 / Aprobado</div><h2>El diseño también se decide.</h2><p>La decisión aprobada conserva los colores y el logo originales, DM Serif Display + Instrument Sans, CTA amarillo con esquinas casi rectas y sombras solo cuando aporten información. Este sigue siendo un tablero independiente, no la nueva web.</p><small>Marea Studio · Tablero de evaluación · 14 de octubre de 2026 · No publicado · Opción A aprobada</small></div></footer>
+<script>
+  document.querySelectorAll('.font-option').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.font-option').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      document.documentElement.style.setProperty('--font-preview', button.getAttribute('data-font'));
+    });
+  });
+</script>
+</body>
+</html>
