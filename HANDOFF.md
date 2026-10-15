@@ -59,3 +59,11 @@
 - Preparar maqueta/implementación revisable aislada; no alterar la web publicada ni `main` sin aprobación explícita.
 - Respetar copy y orden aprobados; diferenciar sección 08 (CTA de transición) y sección 09 (formulario).
 - QA 375px, tablet, desktop, navegación, accesibilidad, performance y envío real del formulario antes de cualquier publicación.
+
+## Corrección de repositorio y entorno — 14-10-2026
+
+- **Único repositorio canónico para la web conectada a Vercel:** `mareastudio/marea-studio-web` (organización `mareastudio`, rama productiva `main`).
+- El repositorio `MarianEsteban/marea-studio-web` es otro repo distinto y se utilizó por error en las fases anteriores. **No continuar desarrollando ni buscando previews de Marea allí.**
+- Se migraron la maqueta visual V1 (`index.html`, `styles.css`, `script.js`) y toda la documentación de decisiones desde la rama del repo equivocado a una nueva rama `marea-visual-v1` del repositorio canónico.
+- El logo y favicon del repositorio canónico coinciden exactamente con los de la maqueta.
+- Vercel detectó automáticamente `mareastudio/marea-studio-web` / `marea-visual-v1` y creó preview READY. No se modificó `main` ni la publicación productiva. La revisión visual real del usuario sigue pendiente.
