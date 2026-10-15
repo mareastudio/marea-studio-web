@@ -84,6 +84,7 @@ form?.addEventListener("submit", async event => {
   if (!endpointIsValid || !submitButton || !form.reportValidity() || submitButton.disabled) return;
 
   submitButton.disabled = true;
+  form.setAttribute("aria-busy", "true");
   submitButton.textContent = "Enviando consulta…";
   setFormFeedback("Estamos enviando tu consulta. Esperá un momento.", "sending");
 
@@ -117,6 +118,7 @@ form?.addEventListener("submit", async event => {
   } finally {
     clearTimeout(timeout);
     submitButton.innerHTML = submitButtonHTML;
+    form.removeAttribute("aria-busy");
     submitButton.disabled = false;
   }
 });
