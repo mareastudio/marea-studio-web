@@ -47,3 +47,7 @@ El usuario confirmó que la versión más compacta de márgenes y espaciados **q
 ## Formulario directo — integración previa a publicación
 
 Rama `marea-contact-v1` en el repositorio canónico: Formspree endpoint `https://formspree.io/f/xqpegerr` ya conectado; botón habilitable vía JS; mensajes de envío y error. **No está validada recepción:** la prueba desde el entorno del asistente quedó bloqueada por DNS. Pendiente de test real desde preview por el usuario y confirmación de email destinatario. Producción sigue intacta.
+
+## Última revisión — 15-10-2026
+
+Usuario comprobó entrega de formulario de contacto a Gmail; diseño y márgenes V2 aprobados. Rama candidata actual `marea-final-review` del repositorio `mareastudio/marea-studio-web`. Últimos detalles: FAQ, foco de inputs, fallback HTML de Formspree, aria-busy y nota informativa de datos. QA estático en `RELEASE-CHECKLIST.md`. **Pendiente revisión visual final de preview y permiso para publicar**.
