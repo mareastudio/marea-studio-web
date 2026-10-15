@@ -36,3 +36,7 @@ También se ajustaron: altura mínima de hero, espacio entre portada y subtítul
 Este control verifica reglas y consistencia de archivos, pero **no equivale a una inspección visual de screenshots renderizados** en 375/768/1440px ni prueba el formulario. La vista previa de Vercel se creó correctamente y requiere una revisión visual en el navegador para aprobar esta versión.
 
 **Nunca aplicar a `main` ni publicar sin aprobación del usuario.**
+
+## Aprobación del usuario — 14-10-2026
+
+El usuario revisó la V2 de espaciados en Vercel y confirmó: **«Sí. Quedó como quería.»** Se considera **APROBADA LA DIRECCIÓN VISUAL Y EL RITMO V2** (márgenes y separaciones). Esto **no autoriza** fusionar a `main` ni publicar en producción. El formulario continúa usando `mailto:` y la validación técnica final de navegación, accesibilidad, responsive y contacto sigue pendiente antes de un lanzamiento.
