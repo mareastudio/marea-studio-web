@@ -225,7 +225,7 @@
             <p>Contanos quién sos y qué querés mejorar. No necesitás tener una estrategia definida: alcanza con que nos cuentes un poco de tu negocio y lo que estás buscando.</p>
             <div class="contact-alt"><span>O SI PREFERÍS, ESCRIBINOS A</span><a href="mailto:marea.studioweb@gmail.com">marea.studioweb@gmail.com ↗</a></div>
           </div>
-          <form class="contact-form" id="contact-form">
+          <form class="contact-form" id="contact-form" method="POST" data-formspree-endpoint="" aria-describedby="form-note">
             <div class="form-row">
               <div class="form-field"><label for="nombre">Tu nombre <span aria-hidden="true">*</span></label><input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="¿Cómo te llamás?" required maxlength="120"></div>
               <div class="form-field"><label for="negocio">Nombre del negocio <span aria-hidden="true">*</span></label><input id="negocio" name="negocio" type="text" autocomplete="organization" placeholder="Tu marca o empresa" required maxlength="160"></div>
@@ -236,8 +236,9 @@
             </div>
             <div class="form-field"><label for="objetivo">¿Qué querés conseguir? <span aria-hidden="true">*</span></label><select id="objetivo" name="objetivo" required><option value="" disabled selected>Seleccioná tu objetivo</option><option>Empezar con publicidad</option><option>Mejorar mis campañas</option><option>Recibir más consultas</option><option>Conseguir más ventas</option><option>Otra necesidad</option></select></div>
             <div class="form-field"><label for="contexto">Contanos un poco más <span aria-hidden="true">*</span></label><textarea id="contexto" name="contexto" required rows="4" maxlength="3000" placeholder="¿Qué vendés y qué te gustaría mejorar?"></textarea></div>
-            <button class="btn btn-primary btn-submit" type="submit">Enviar consulta <span aria-hidden="true">↗</span></button>
-            <p class="form-note" id="form-note" role="status">Se abrirá tu aplicación de correo con la consulta preparada. Tendrás que enviarla desde allí.</p>
+            <div class="form-honeypot" aria-hidden="true"><label for="contact-website-hidden">Dejá este campo vacío</label><input id="contact-website-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+            <button class="btn btn-primary btn-submit" type="submit" disabled>Enviar consulta <span aria-hidden="true">↗</span></button>
+            <p class="form-note" id="form-note" role="status" aria-live="polite">Estamos terminando de habilitar el envío directo. Mientras tanto, podés escribirnos al correo que aparece a la izquierda.</p>
           </form>
         </div>
       </div>
