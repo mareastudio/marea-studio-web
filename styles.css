@@ -187,6 +187,13 @@ em{font-style:normal}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-bottom-color:var(--yellow);box-shadow:0 1px 0 var(--yellow);outline:0}
 .btn-submit{margin-top:7px;width:100%}
 .form-note{font-size:12px;color:rgba(247,245,240,.74);line-height:1.65;margin:-10px 0 0}
+.form-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+.btn-submit:disabled{cursor:not-allowed;transform:none;opacity:.66}
+.btn-submit:disabled:hover{background:var(--yellow);color:var(--navy);transform:none}
+.form-note[data-state="success"]{color:#C4EED2}
+.form-note[data-state="error"]{color:#FFB9AD}
+.form-note[data-state="sending"]{color:var(--yellow)}
+.form-note[data-state="unavailable"]{color:rgba(247,245,240,.72)}
 /* Footer */
 .site-footer{background:var(--navy);border-top:1px solid var(--line-light);color:var(--paper);padding:52px 0 24px}
 .footer-top{display:grid;grid-template-columns:1.2fr .8fr;gap:42px;align-items:end}
