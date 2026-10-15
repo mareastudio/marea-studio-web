@@ -1,105 +1,82 @@
-const menuButton = document.querySelector('.menu-toggle');
-const navigation = document.querySelector('.main-nav');
-const menuLabel = menuButton?.querySelector('.sr-only');
-const siteHeader = document.querySelector('.site-header');
+"use strict";
 
-const closeMenu = () => {
-  menuButton?.setAttribute('aria-expanded', 'false');
-  navigation?.classList.remove('is-open');
-  if (menuLabel) menuLabel.textContent = 'Abrir menú';
-  document.body.classList.remove('menu-open');
-};
+const header = document.querySelector(".site-header");
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".main-nav");
+const menuText = menuToggle?.querySelector(".sr-only");
 
-menuButton?.addEventListener('click', () => {
-  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-  menuButton.setAttribute('aria-expanded', String(!isOpen));
-  navigation.classList.toggle('is-open', !isOpen);
-  document.body.classList.toggle('menu-open', !isOpen);
-  if (menuLabel) menuLabel.textContent = isOpen ? 'Abrir menú' : 'Cerrar menú';
+function closeMenu(returnFocus = false) {
+  if (!menuToggle || !nav) return;
+  menuToggle.setAttribute("aria-expanded", "false");
+  nav.classList.remove("is-open");
+  if (menuText) menuText.textContent = "Abrir menú";
+  if (returnFocus) menuToggle.focus();
+}
+
+menuToggle?.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  nav?.classList.toggle("is-open", !isOpen);
+  if (menuText) menuText.textContent = isOpen ? "Abrir menú" : "Cerrar menú";
 });
 
-navigation?.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => closeMenu());
+nav?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => closeMenu());
 });
 
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
-    closeMenu();
-    menuButton.focus();
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
+    closeMenu(true);
   }
 });
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth >= 900) closeMenu();
+document.addEventListener("click", event => {
+  if (menuToggle?.getAttribute("aria-expanded") === "true" && !event.target.closest(".site-header")) {
+    closeMenu();
+  }
 });
 
-document.addEventListener('click', (event) => {
-  if (menuButton?.getAttribute('aria-expanded') !== 'true') return;
-  if (!navigation?.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 800) closeMenu();
 });
 
-const updateHeader = () => siteHeader?.classList.toggle('is-scrolled', window.scrollY > 16);
-updateHeader();
-window.addEventListener('scroll', updateHeader, { passive: true });
-
-const sectionLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
-const observedSections = sectionLinks
-  .map((link) => document.querySelector(link.getAttribute('href')))
-  .filter(Boolean);
-
-if ('IntersectionObserver' in window) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      sectionLinks.forEach((link) => {
-        const isCurrent = link.getAttribute('href') === `#${entry.target.id}`;
-        if (isCurrent) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
-      });
-    });
-  }, { rootMargin: '-25% 0px -65%', threshold: 0 });
-
-  observedSections.forEach((section) => sectionObserver.observe(section));
+function updateHeader() {
+  header?.classList.toggle("is-scrolled", window.scrollY > 12);
 }
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
 
-const projectPreviews = document.querySelectorAll('[data-preview-scroll]');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-let previewObserver;
+const yearElement = document.querySelector("#year");
+if (yearElement) yearElement.textContent = String(new Date().getFullYear());
 
-const updateProjectPreviews = () => {
-  previewObserver?.disconnect();
-  projectPreviews.forEach((preview) => preview.classList.remove('is-previewing'));
+const form = document.querySelector("#contact-form");
+const formNote = document.querySelector("#form-note");
 
-  if (reducedMotion.matches || !projectPreviews.length || !('IntersectionObserver' in window)) return;
-
-  previewObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.target.classList.toggle('is-previewing', entry.isIntersecting);
-    });
-  }, { rootMargin: '10% 0px', threshold: 0.2 });
-
-  projectPreviews.forEach((preview) => previewObserver.observe(preview));
-};
-
-updateProjectPreviews();
-reducedMotion.addEventListener?.('change', updateProjectPreviews);
-
-document.querySelector('#year').textContent = new Date().getFullYear();
-
-document.querySelector('#contact-form')?.addEventListener('submit', (event) => {
+// Provisional, honest fallback: a mailto link DOES NOT send a message automatically.
+// A real backend/inbox endpoint must be chosen and tested before production release.
+form?.addEventListener("submit", event => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const subject = `Consulta Paid Media — ${data.get('marca') || data.get('nombre')}`;
-  const body = [
-    `Nombre: ${data.get('nombre')}`,
-    `Negocio / marca: ${data.get('marca') || 'No indicado'}`,
-    `Email: ${data.get('email')}`,
-    `Instagram o web: ${data.get('web') || 'No indicado'}`,
-    `Objetivo: ${data.get('necesidad')}`,
-    '',
-    'Contexto:',
-    data.get('idea'),
-  ].join('\n');
+  if (!form.reportValidity()) return;
 
-  window.location.href = `mailto:marea.studioweb@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const data = new FormData(form);
+  const value = key => String(data.get(key) ?? "").trim();
+  const subject = "Consulta Marea Studio — " + (value("negocio") || value("nombre"));
+  const body = [
+    "Nombre: " + value("nombre"),
+    "Negocio: " + value("negocio"),
+    "Email: " + value("email"),
+    "Instagram o sitio web: " + (value("instagram") || "No indicado"),
+    "Objetivo: " + value("objetivo"),
+    "",
+    "Contanos un poco más:",
+    value("contexto")
+  ].join("\n");
+
+  const mailto = "mailto:marea.studioweb@gmail.com?subject=" +
+    encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+  if (formNote) {
+    formNote.textContent = "Abrimos tu aplicación de correo con la consulta preparada. Revisá el mensaje y presioná Enviar para completar el contacto.";
+  }
+  window.location.href = mailto;
 });
