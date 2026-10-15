@@ -2,7 +2,7 @@
 
 **Repositorio canónico:** `mareastudio/marea-studio-web`  
 **Rama:** `marea-contact-v1` (a partir de V2 de espaciados aprobada).  
-**Estado:** código del envío AJAX listo; **sin activar ni probar recepción de una consulta real**. `main` y la web publicada no se modificaron.
+**Estado:** endpoint de Formspree **configurado** por el usuario; integración AJAX habilitada en la preview. **Falta una prueba real desde el navegador y verificar recepción en Formspree y Gmail.** `main` y la web publicada no se modificaron.
 
 ## Integración elegida
 
@@ -13,22 +13,19 @@ Referencia: https://help.formspree.io/articles/building-your-form/building-an-ht
 ## Qué quedó implementado
 
 - Formulario aprobado con sus seis campos originales; sin cambios de copy ni estructura.
-- `<form>` con `data-formspree-endpoint=""` pendiente de asignar URL real.
+- `<form>` con `data-formspree-endpoint="https://formspree.io/f/xqpegerr"` configurado en la rama de preview, de acuerdo con el enlace aportado por el usuario. Es un endpoint público de formularios, no un secreto.
 - `script.js` envía `FormData` mediante `fetch(POST)` al endpoint de Formspree una vez configurado; ya no abre automáticamente una aplicación de correo.
 - Validación HTML antes del envío, botón deshabilitado durante petición, límite de 20 s, manejo de error, confirmación accesible mediante `role=status`, reset tras éxito.
 - Honeypot `_gotcha` oculto compatible con Formspree; el dashboard de Formspree debe tener configurada su protección antispam.
-- **No existe un éxito falso:** si el endpoint no se ha configurado, el botón permanece deshabilitado y el usuario ve el email alternativo.
+- **No existe un éxito falso:** el botón se habilita cuando el endpoint tiene un formato válido y JavaScript inicializa; un mensaje de éxito solo aparece tras respuesta HTTP satisfactoria. Si el endpoint falta o tiene formato inválido, se mantiene deshabilitado.
 
-## Acción del propietario para activar el formulario
+## Configuración recibida y prueba pendiente
 
-1. Entrar a https://formspree.io/register e iniciar sesión con el correo del estudio. Verificar el correo.
-2. En Formspree, crear un formulario nuevo denominado **Contacto Marea Studio**.
-3. Confirmar que el **Target Email** verificado es `marea.studioweb@gmail.com` y que las notificaciones están habilitadas.
-4. Desde la sección **Integration**, copiar la URL exacta de endpoint, con forma `https://formspree.io/f/XXXXXXXX`. Esto es un identificador público de formulario, **no** una contraseña ni API key.
-5. Compartir solo el enlace del endpoint con el asistente, para completar el valor de `data-formspree-endpoint` en `index.html` de **esta rama**.
-6. Probar envío desde la preview con datos de prueba, confirmar recepción en el inbox de Formspree y en Gmail. Solo después marcar funcionalmente aprobado.
-
-Si el servicio exige completar un CAPTCHA u otra verificación para AJAX, seguir la integración oficial según configuración de la cuenta y volver a probar. Nunca desactivar protección antispam automáticamente ni afirmar que llegan correos sin prueba real.
+- Endpoint proporcionado por el usuario el 14-10-2026: `https://formspree.io/f/xqpegerr`.
+- Código conectado en `index.html` de la rama `marea-contact-v1` y deployment de Vercel `READY`.
+- Se intentó un envío de prueba desde el entorno de ejecución del asistente, pero la conexión externa falló por DNS (`Could not resolve host: formspree.io`, HTTP 000). **No hay constancia de envío ni recepción.**
+- **Siguiente paso del usuario:** abrir la URL de preview, completar una consulta con el nombre «PRUEBA FORMULARIO MAREA», presionar Enviar consulta y comprobar que aparezca el mensaje de confirmación. Después revisar el inbox de Formspree y `marea.studioweb@gmail.com` (incluyendo spam). Confirmar que el Target Email esté verificado y que las notificaciones estén activas.
+- Ante error `429` esperar y reintentar; evitar múltiples envíos innecesarios. Formspree cuenta con controles de spam y CAPTCHA. No se puede certificar recepción en Gmail solo a partir de la respuesta HTTP.
 
 ## Antes de pasar a producción
 
