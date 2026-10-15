@@ -81,3 +81,11 @@
 - El usuario proporcionó el endpoint público `https://formspree.io/f/xqpegerr`; quedó conectado en `index.html`. `script.js` realiza POST AJAX y usa mensajes de éxito/error, no `mailto:`.
 - Despliegue preview Vercel READY; producción `main` intacta.
 - **Sin prueba de recepción final:** se intentó enviar desde el entorno del asistente, pero falló la resolución DNS de `formspree.io`; no se hizo envío. La persona usuaria debe probar desde su navegador y confirmar entrada en Formspree y notificación a Gmail antes de publicación.
+
+## Revisión final — 15-10-2026
+
+- El usuario **confirmó recepción del correo en Gmail** tras probar el formulario Formspree: «Llega excelente».
+- Rama actual de revisión: `marea-final-review` (del repo CANÓNICO `mareastudio/marea-studio-web`), heredada de V2 de márgenes `marea-spacing-v2` y formulario `marea-contact-v1`.
+- Corrección menor de puntuación FAQ; envío Formspree ahora tiene respaldo HTML sin JavaScript, mejora de foco de inputs, `aria-busy`, aviso informativo de datos.
+- Revisión estática documentada en `RELEASE-CHECKLIST.md`. Preview Vercel **READY**. Sin alterar `main` ni producción.
+- Pendiente: revisión visual final en navegador y una consulta de prueba tras estos cambios; después pedir autorización explícita para publicar.
