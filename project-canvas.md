@@ -39,3 +39,7 @@ No son hallazgos validados por investigación directa con clientes.
 ## Fuente de verdad de repositorio
 
 La web de producción está conectada en Vercel a **`mareastudio/marea-studio-web`**, NO a `MarianEsteban/marea-studio-web`. Rama de trabajo actual: **`marea-visual-v1`** en `mareastudio/marea-studio-web`; preview generada automáticamente en Vercel, pendiente de revisión. No modificar `main` todavía.
+
+## Estado de la V2 — APROBACIÓN VISUAL (14-10-2026)
+
+El usuario confirmó que la versión más compacta de márgenes y espaciados **quedó como quería**. **Rama de revisión vigente:** `marea-spacing-v2` del repositorio canónico `mareastudio/marea-studio-web`; reemplaza a `marea-visual-v1` como candidata. **Pendiente:** QA responsive/funcional y decidir envío de formulario (en este momento `mailto:`). **No publicada ni fusionada a `main`.**
