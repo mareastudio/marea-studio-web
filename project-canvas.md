@@ -35,3 +35,7 @@ No son hallazgos validados por investigación directa con clientes.
 - Honorarios y oferta contractual: cotización personalizada, sin tarifas publicadas; condiciones específicas pendientes.
 - Alcance decidido: estrategia y copy, imágenes/videos aportados por cliente; desarrollo web/landing independiente, presupuestado por separado. Pendiente: tarifas específicas, periodicidad de reportes y condiciones contractuales de cada servicio.
 - Testimonios/casos respaldados, si los hay.
+
+## Fuente de verdad de repositorio
+
+La web de producción está conectada en Vercel a **`mareastudio/marea-studio-web`**, NO a `MarianEsteban/marea-studio-web`. Rama de trabajo actual: **`marea-visual-v1`** en `mareastudio/marea-studio-web`; preview generada automáticamente en Vercel, pendiente de revisión. No modificar `main` todavía.
