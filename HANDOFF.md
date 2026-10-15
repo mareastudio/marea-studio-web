@@ -74,3 +74,10 @@
 - **Repositorio:** `mareastudio/marea-studio-web`. **Rama canónica de revisión actual:** `marea-spacing-v2` (proveniente de `marea-visual-v1`).
 - Mantener los márgenes laterales, recortar aire vertical global y reservar más espacio para secciones de valor y transparencia. El copy, logo y tipografía no se modificaron en V2.
 - **Pendientes antes de publicar:** decidir y comprobar mecanismo real de recepción de formulario (actualmente `mailto:`), QA visual/funcional mobile y desktop, validaciones de accesibilidad y performance. No tocar `main` ni el dominio publicado hasta autorización específica.
+
+## Integración de contacto — preview (14-10-2026)
+
+- **Rama vigente de implementación del formulario:** `marea-contact-v1`, creada desde la V2 de diseño aprobada `marea-spacing-v2`.
+- El usuario proporcionó el endpoint público `https://formspree.io/f/xqpegerr`; quedó conectado en `index.html`. `script.js` realiza POST AJAX y usa mensajes de éxito/error, no `mailto:`.
+- Despliegue preview Vercel READY; producción `main` intacta.
+- **Sin prueba de recepción final:** se intentó enviar desde el entorno del asistente, pero falló la resolución DNS de `formspree.io`; no se hizo envío. La persona usuaria debe probar desde su navegador y confirmar entrada en Formspree y notificación a Gmail antes de publicación.
