@@ -43,3 +43,7 @@ La web de producción está conectada en Vercel a **`mareastudio/marea-studio-we
 ## Estado de la V2 — APROBACIÓN VISUAL (14-10-2026)
 
 El usuario confirmó que la versión más compacta de márgenes y espaciados **quedó como quería**. **Rama de revisión vigente:** `marea-spacing-v2` del repositorio canónico `mareastudio/marea-studio-web`; reemplaza a `marea-visual-v1` como candidata. **Pendiente:** QA responsive/funcional y decidir envío de formulario (en este momento `mailto:`). **No publicada ni fusionada a `main`.**
+
+## Formulario directo — integración previa a publicación
+
+Rama `marea-contact-v1` en el repositorio canónico: Formspree endpoint `https://formspree.io/f/xqpegerr` ya conectado; botón habilitable vía JS; mensajes de envío y error. **No está validada recepción:** la prueba desde el entorno del asistente quedó bloqueada por DNS. Pendiente de test real desde preview por el usuario y confirmación de email destinatario. Producción sigue intacta.
